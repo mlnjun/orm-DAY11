@@ -12,6 +12,7 @@ GET
 */
 router.get('/list',async(req,res)=>{
 
+  // 채팅방 정보 데이터
   var channel = [
     {
       title:"채팅방 제목1",
@@ -20,7 +21,7 @@ router.get('/list',async(req,res)=>{
     },
     {
       title:"채팅방 제목2",
-      members:["A", "B", "C"],
+      members:["A", "B"],
       id:2
     },
     {
@@ -50,7 +51,11 @@ router.get('/create',function(req,res){
 POST
 */
 router.post('/create',function(req,res){
-  // chatRoomTitle, chatRoomMembers, chatRoomId
+  // 생성 채팅방 데이터 받기
+  chatRoomTitle = req.body.chTitle;
+  chatRoomMembers = req.body.chMembers;
+
+  // 생성 채팅방 데이터 DB 저장
 
 
   res.redirect('/channel/list');
@@ -64,6 +69,14 @@ GET
 */
 router.get('/modify/:chId',async(req,res)=>{
 
+  // 파라미터 방식으로 채팅방 ID 받기
+  let chId = req.params.chId;
+
+
+  // 채널 ID정보로 DB에서 해당 데이터 찾기
+
+
+  // 임시 데이터
   var channel = {
     title:"채팅방 제목1",
     members:["A", "B"],
@@ -82,7 +95,13 @@ router.get('/modify/:chId',async(req,res)=>{
 POST
 */
 router.post('/modify/:chId',async(req,res)=>{
-  // chatRoomTitle, chatRoomMembers, chatRoomId
+  // 수정할 채팅방 데이터 받기
+  chatRoomTitle = req.body.chTitle;
+  chatRoomMembers = req.body.chMembers;
+
+
+  // DB 채팅방 데이터 수정하기
+
 
 
   res.redirect('/channel/list');
@@ -95,7 +114,7 @@ router.post('/modify/:chId',async(req,res)=>{
 GET
 */
 router.get('/delete',function(req,res){
-  // chatRoomId
+  // chatRoomId 받고 DB에서 찾아서 삭제
 
 
   res.redirect('/channel/list');

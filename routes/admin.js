@@ -117,6 +117,7 @@ GET
 */
 router.get('/delete', function(req,res){
   var adminId = req.body.aid;
+  // Id 정보로 DB에서 데이터 찾은 후 제거
 
   res.redirect('/admin/list');
 });

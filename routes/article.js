@@ -11,7 +11,7 @@ var router = express.Router();
 GET
 */
 router.get('/list',function(req,res){
-
+  
   var articles = [
     {
       contents:"게시판1 글",
@@ -41,10 +41,6 @@ router.get('/list',function(req,res){
 GET
 */
 router.get('/create',function(req,res){
-
-
-  
-
   res.render('article/create');
 });
 
@@ -55,10 +51,12 @@ router.get('/create',function(req,res){
 POST
 */
 router.post('/create',function(req,res){
+  // 요청 데이터 받기
   var contents = req.body.artContents;
   var title = req.body.artTitle;
   
   
+  // 요청 데이터 DB 저장
   var articles = [
     {
       contents,
@@ -78,12 +76,15 @@ GET
 */
 router.get('/modify/:artId',function(req,res){
 
-  var articleId = req.params.artId
+  // 파라미터 방식으로 요청 데이터 id 받기 
+  var articleId = req.params.artId;
+  
 
-
+  // 수정 전 데이터 DB 에서 불러오기
   var articles = {
-    contents:"게시판1 글",
-    title:"게시판1 제목",
+    contents:"게시판1 글",  // 임시
+    title:"게시판1 제목",  // 임시
+
     articleId
   }
 
@@ -98,9 +99,12 @@ router.get('/modify/:artId',function(req,res){
 POST
 */
 router.post('/modify/:artId',function(req,res){
+  // 수정 요청 데이터 받기
   var contents = req.body.contents;
   var title = req.body.title;
   
+
+  // 수정 요청 데이터 DB 보내기
   var articles = [
     {
       contents,
@@ -118,7 +122,10 @@ router.post('/modify/:artId',function(req,res){
 GET
 */
 router.get('/delete',function(req,res){
+  // 삭제할 데이터 id 요청 받기
   var artId = req.body.articleId;
+
+  // 삭제할 데이터 id DB에서 찾은 후 삭제
 
   res.redirect('/article/list');
 });
